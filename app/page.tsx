@@ -82,11 +82,7 @@ export default function BirthdayCard() {
   }
 
   const handleScroll = (position: number) => {
-    try {
       window.scrollTo({ top: position, behavior: 'smooth' })
-    } catch (error) {
-      window.scrollTo(0, position)
-    }
   }
 
   return (
@@ -110,7 +106,7 @@ export default function BirthdayCard() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          From your favorite son,
+          From your favorite son,&apos;
         </motion.p>
         <motion.div
           className="mt-8"
@@ -146,7 +142,7 @@ export default function BirthdayCard() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          You're the Best Mom Ever!
+          You&apos;re the Best Mom Ever!
         </motion.h2>
         <motion.p
           className="text-xl text-purple-700"
@@ -202,13 +198,15 @@ function MemoryCard({ src, message, index }: MemoryCardProps) {
       { threshold: 0.1 }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    const currentRef = ref.current
+
+    if (currentRef) {
+      observer.observe(currentRef)
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [controls])
